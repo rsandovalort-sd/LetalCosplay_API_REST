@@ -3,11 +3,7 @@ package com.example.letalCosplay.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.letalCosplay.model.Proveedor;
 import com.example.letalCosplay.service.ProveedorServiceImpl;
@@ -27,5 +23,22 @@ public class ProveedorController {
     @PostMapping("/crear")
     public Proveedor guardar(@RequestBody Proveedor proveedor) {
         return proveedorService.guardar(proveedor);
+    }
+
+    @GetMapping("/{id}")
+    public Proveedor buscarPorId(@PathVariable Long id) {
+        return proveedorService.buscarPorId(id);
+    }
+
+    @PutMapping("/actualizar/{id}")
+    public Proveedor actualizar(
+            @PathVariable Long id,
+            @RequestBody Proveedor proveedor) {
+        return proveedorService.actualizar(id, proveedor);
+    }
+
+    @DeleteMapping("/eliminar/{id}")
+    public void eliminar(@PathVariable Long id) {
+        proveedorService.eliminar(id);
     }
 }

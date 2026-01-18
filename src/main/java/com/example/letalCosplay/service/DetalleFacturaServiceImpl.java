@@ -34,7 +34,7 @@ public class DetalleFacturaServiceImpl implements IDetalleFacturaService {
     @Override
     public void eliminar(Long id) {
         if (!detalleFacturaRepository.existsById(id)) {
-            throw new RuntimeException("Detalle no existe");
+            throw new RuntimeException("Detalle de factura no existe");
         }
         detalleFacturaRepository.deleteById(id);
     }
