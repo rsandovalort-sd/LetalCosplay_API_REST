@@ -18,7 +18,7 @@ public class Proveedor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idProveedor;
+    private Long idProveedor;
 
     private String nombre;
     private String nit;
@@ -28,11 +28,11 @@ public class Proveedor {
     private List<Producto> productos;
 
     // getters y setters
-    public Integer getIdProveedor() {
+    public Long getIdProveedor() {
         return idProveedor;
     }
 
-    public void setIdProveedor(Integer idProveedor) {
+    public void setIdProveedor(Long idProveedor) {
         this.idProveedor = idProveedor;
     }
 

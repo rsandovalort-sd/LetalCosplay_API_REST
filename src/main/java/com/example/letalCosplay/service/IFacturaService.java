@@ -6,9 +6,12 @@ import com.example.letalCosplay.model.Factura;
 
 public interface IFacturaService {
 
+
     List<Factura> listar();
 
-    Factura guardar(Factura factura);
+    Factura buscarPorId(Long id);
 
-    Factura buscarPorId(Integer id);
+    Factura guardar(Long clienteId, Long vendedorId, Factura factura);
+
+    void eliminar(Long id);
 }

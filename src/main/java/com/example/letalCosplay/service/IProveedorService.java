@@ -10,9 +10,9 @@ public interface IProveedorService {
 
     Proveedor guardar(Proveedor proveedor);
 
-    Proveedor buscarPorId(Integer id);
+    Proveedor buscarPorId(Long id);
 
-    Proveedor actualizar(Integer id, Proveedor proveedor);
+    Proveedor actualizar(Long id, Proveedor proveedor);
 
-    void eliminar(Integer id);
+    void eliminar(Long id);
 }

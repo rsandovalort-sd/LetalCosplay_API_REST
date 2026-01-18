@@ -14,7 +14,11 @@ import com.example.letalCosplay.repository.ProveedorRepository;
 public class ProveedorServiceImpl implements IProveedorService {
 
     @Autowired
-    private ProveedorRepository proveedorRepository;
+    private final ProveedorRepository proveedorRepository;
+
+    public ProveedorServiceImpl(ProveedorRepository proveedorRepository) {
+        this.proveedorRepository = proveedorRepository;
+    }
 
     @Override
     public List<Proveedor> listar() {
@@ -23,22 +27,31 @@ public class ProveedorServiceImpl implements IProveedorService {
 
     @Override
     public Proveedor guardar(Proveedor proveedor) {
+        if (proveedor.getNombre() == null) {
+            throw new RuntimeException("El nombre del proveedor es obligatorio");
+        }
+        if (proveedor.getNit() == null) {
+            throw new RuntimeException("El NIT es obligatorio");
+        }
+
         return proveedorRepository.save(proveedor);
     }
 
     @Override
-    public Proveedor buscarPorId(Integer id) {
-        return proveedorRepository.findById(id).orElse(null);
+    public Proveedor buscarPorId(Long id) {
+        return proveedorRepository.findById((id)).orElse(null);
     }
 
     @Override
-    public Proveedor actualizar(Integer id, Proveedor proveedor) {
-        proveedor.setIdProveedor(id);
-        return proveedorRepository.save(proveedor);
+    public Proveedor actualizar(Long id, Proveedor proveedor) {
+        Proveedor proveedorExistente = buscarPorId(id);
+        proveedorExistente.setNombre(proveedor.getNombre());
+        proveedorExistente.setNit(proveedor.getNit());
+        return proveedorRepository.save(proveedorExistente);
     }
 
     @Override
-    public void eliminar(Integer id) {
-        proveedorRepository.deleteById(id);
+    public void eliminar(Long id) {
+        proveedorRepository.deleteById((id));
     }
 }

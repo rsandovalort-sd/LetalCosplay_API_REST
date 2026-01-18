@@ -10,9 +10,9 @@ public interface IProductoService {
 
     Producto guardar(Producto producto);
 
-    Producto buscarPorId(Integer id);
+    Producto buscarPorId(Long id);
 
-    Producto actualizar(Integer id, Producto producto);
+    Producto actualizar(Long id, Producto producto);
 
-    void eliminar(Integer id);
+    void eliminar(Long id);
 }

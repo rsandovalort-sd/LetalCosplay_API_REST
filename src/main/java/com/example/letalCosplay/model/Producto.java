@@ -4,13 +4,8 @@ import java.math.BigDecimal;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "producto")
@@ -18,7 +13,7 @@ public class Producto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idProducto;
+    private Long idProducto;
 
     private String nombre;
     private BigDecimal precio_compra;
@@ -29,11 +24,15 @@ public class Producto {
     @JsonBackReference
     private Proveedor proveedor;
 
-    public Integer getIdProducto() {
+    @OneToOne(mappedBy = "id_producto", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private Producto producto;
+
+    public Long getIdProducto() {
         return idProducto;
     }
 
-    public void setIdProducto(Integer idProducto) {
+    public void setIdProducto(Long idProducto) {
         this.idProducto = idProducto;
     }
 
@@ -45,11 +44,11 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public BigDecimal getPrecioCompra() {
+    public BigDecimal getPrecio_compra() {
         return precio_compra;
     }
 
-    public void setPrecioCompra(BigDecimal precio_compra) {
+    public void setPrecio_compra(BigDecimal precio_compra) {
         this.precio_compra = precio_compra;
     }
 
@@ -69,5 +68,11 @@ public class Producto {
         this.proveedor = proveedor;
     }
 
-    // getters y setters
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
 }

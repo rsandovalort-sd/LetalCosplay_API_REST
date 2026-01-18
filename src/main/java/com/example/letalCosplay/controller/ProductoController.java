@@ -35,19 +35,19 @@ public class ProductoController {
     }
 
     @GetMapping("/{id}")
-    public Producto buscar(@PathVariable Integer id) {
+    public Producto buscar(@PathVariable Long id) {
         return productoService.buscarPorId(id);
     }
 
     @PutMapping("/{id}")
     public Producto actualizar(
-            @PathVariable Integer id,
+            @PathVariable Long id,
             @RequestBody Producto producto) {
         return productoService.actualizar(id, producto);
     }
 
     @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable Integer id) {
+    public void eliminar(@PathVariable Long id) {
         productoService.eliminar(id);
     }
 }

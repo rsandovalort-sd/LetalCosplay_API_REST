@@ -9,4 +9,10 @@ public interface IVendedorService {
     List<Vendedor> listar();
 
     Vendedor guardar(Vendedor vendedor);
+
+    Vendedor buscarPorId(Long id);
+
+    Vendedor actualizar(Long id, Vendedor vendedor);
+
+    void eliminar(Long id);
 }

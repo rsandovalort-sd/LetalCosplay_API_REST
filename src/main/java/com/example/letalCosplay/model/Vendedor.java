@@ -11,7 +11,7 @@ public class Vendedor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idVendedor;
+    private Long idVendedor;
 
 
     private String nombre;
@@ -20,18 +20,18 @@ public class Vendedor {
     private String direccion;
     private String correo;
 
-    @OneToMany(mappedBy = "dueno", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "vendedor", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Factura> facturas;
 
     // getters y setters
 
 
-    public Integer getIdVendedor() {
+    public Long getIdVendedor() {
         return idVendedor;
     }
 
-    public void setIdVendedor(Integer idVendedor) {
+    public void setIdVendedor(Long idVendedor) {
         this.idVendedor = idVendedor;
     }
 

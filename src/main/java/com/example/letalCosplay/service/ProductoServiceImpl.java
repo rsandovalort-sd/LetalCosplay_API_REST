@@ -2,6 +2,7 @@ package com.example.letalCosplay.service;
 
 import java.util.List;
 
+import org.apache.logging.log4j.message.LoggerNameAwareMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,8 +14,11 @@ import com.example.letalCosplay.repository.ProductoRepository;
 @Transactional
 public class ProductoServiceImpl implements IProductoService {
 
-    @Autowired
-    private ProductoRepository productoRepository;
+    private final ProductoRepository productoRepository;
+
+    public ProductoServiceImpl(ProductoRepository productoRepository) {
+        this.productoRepository = productoRepository;
+    }
 
     @Override
     public List<Producto> listar() {
@@ -29,18 +33,29 @@ public class ProductoServiceImpl implements IProductoService {
     }
 
     @Override
-    public Producto buscarPorId(Integer id) {
-        return productoRepository.findById(id).orElse(null);
+    public Producto buscarPorId(Long id) {
+        return productoRepository.findById(id).orElseThrow(() -> new RuntimeException("Producto no encontrado"));
     }
 
     @Override
-    public Producto actualizar(Integer id, Producto producto) {
-        producto.setIdProducto(id);
-        return productoRepository.save(producto);
+    public Producto actualizar(Long id, Producto producto) {
+
+        Producto productoExistente = productoRepository.findById(id).orElseThrow(() -> new RuntimeException("Producto no encontrado"));
+
+        productoExistente.setNombre(producto.getNombre());
+        productoExistente.setPrecio_compra(producto.getPrecio_compra());
+        productoExistente.setPrecio_compra(producto.getPrecio_compra());
+        productoExistente.setStock(producto.getStock());
+
+        return productoRepository.save(productoExistente);
     }
 
+
     @Override
-    public void eliminar(Integer id) {
+    public void eliminar(Long id) {
+        if (!productoRepository.existsById(id)) {
+            throw new RuntimeException("Producto no existe");
+        }
         productoRepository.deleteById(id);
     }
 }
