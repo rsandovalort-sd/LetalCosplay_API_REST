@@ -20,7 +20,6 @@ public class DetalleFacturaServiceImpl implements IDetalleFacturaService {
         this.detalleFacturaRepository = detalleFacturaRepository;
     }
 
-
     @Override
     public List<DetalleFactura> listarPorFactura(Long facturaId) {
         return detalleFacturaRepository.findByFactura(facturaId);
@@ -29,7 +28,7 @@ public class DetalleFacturaServiceImpl implements IDetalleFacturaService {
     @Override
     public DetalleFactura buscarPorId(Long id) {
         return detalleFacturaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Detalle de factura no encontrado"));
+                .orElseThrow(() -> new RuntimeException("Detalles de factura no encontrados"));
     }
 
     @Override
