@@ -24,7 +24,7 @@ public class Producto {
     @JsonBackReference
     private Proveedor proveedor;
 
-    @OneToOne(mappedBy = "id_producto", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "producto", cascade = CascadeType.ALL)
     @JsonManagedReference
     private Producto producto;
 

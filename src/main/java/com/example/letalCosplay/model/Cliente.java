@@ -22,7 +22,7 @@ public class Cliente {
     private String correo;
 
     // ONE TO MANY
-    @OneToMany(mappedBy = "dueno", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Factura> facturas;
 
