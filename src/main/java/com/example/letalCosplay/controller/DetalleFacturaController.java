@@ -15,6 +15,10 @@ public class DetalleFacturaController {
     @Autowired
     private DetalleFacturaServiceImpl detalleFacturaService;
 
+    public DetalleFacturaController(DetalleFacturaServiceImpl detalleFacturaService) {
+        this.detalleFacturaService = detalleFacturaService;
+    }
+
     @GetMapping("/factura/{facturaId}")
     public List<DetalleFactura> listarPorFactura(@PathVariable Long facturaId) {
         return detalleFacturaService.listarPorFactura(facturaId);

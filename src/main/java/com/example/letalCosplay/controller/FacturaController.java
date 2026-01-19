@@ -15,6 +15,9 @@ public class FacturaController {
     @Autowired
     private FacturaServiceImpl facturaService;
 
+    public FacturaController(FacturaServiceImpl facturaService) {
+        this.facturaService = facturaService;
+    }
 
     @GetMapping
     public List<Factura> listar() {

@@ -15,6 +15,10 @@ public class ProveedorController {
     @Autowired
     private ProveedorServiceImpl proveedorService;
 
+    public ProveedorController(ProveedorServiceImpl proveedorService) {
+        this.proveedorService = proveedorService;
+    }
+
     @GetMapping
     public List<Proveedor> listar() {
         return proveedorService.listar();
