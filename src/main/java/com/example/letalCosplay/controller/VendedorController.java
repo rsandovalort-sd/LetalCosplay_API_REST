@@ -24,7 +24,7 @@ public class VendedorController {
         return vendedorService.listar();
     }
 
-    @PostMapping
+    @PostMapping ("/crear")
     public Vendedor guardar(@RequestBody Vendedor vendedor) {
         return vendedorService.guardar(vendedor);
     }
