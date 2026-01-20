@@ -1,6 +1,6 @@
 package com.example.letalCosplay;
 
-import com.JWTClase.JWTLogin.service.UserService;
+import com.example.letalCosplay.service.UserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

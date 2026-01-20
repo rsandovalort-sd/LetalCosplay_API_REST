@@ -1,6 +1,6 @@
 package com.example.letalCosplay;
 
-import com.JWTClase.JWTLogin.service.UserService;
+import com.example.letalCosplay.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
