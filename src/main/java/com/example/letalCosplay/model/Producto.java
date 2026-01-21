@@ -1,6 +1,7 @@
 package com.example.letalCosplay.model;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -26,7 +27,7 @@ public class Producto {
 
     @OneToOne(mappedBy = "producto", cascade = CascadeType.ALL)
     @JsonManagedReference
-    private Producto producto;
+    private List<DetalleFactura> detalleFactura;
 
     public Long getIdProducto() {
         return idProducto;
@@ -68,11 +69,10 @@ public class Producto {
         this.proveedor = proveedor;
     }
 
-    public Producto getProducto() {
-        return producto;
+    public List<DetalleFactura> getDetalleFactura() {
+        return detalleFactura;
     }
-
-    public void setProducto(Producto producto) {
-        this.producto = producto;
+    public void setDetalleFactura(List<DetalleFactura> detalleFactura) {
+        this.detalleFactura = detalleFactura;
     }
 }

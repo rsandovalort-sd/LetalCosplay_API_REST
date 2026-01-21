@@ -20,7 +20,7 @@ public class User {
     @Column(nullable = false)
     private BigInteger telefono;
 
-    @Column(nullable = false)
+    @Column(unique = true, nullable = false)
     private String correo;
 
     @Column(nullable = false)

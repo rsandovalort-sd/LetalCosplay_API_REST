@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 
@@ -28,13 +29,13 @@ public class UserService {
     // Validar campos obligatorios
     public User registerUser(User user) {
         // Validar campos obligatorios
-        if (user.getNombre() == null || user.getPassword() == null ||
-                user.getNombre() == null || user.getApellido() == null) {
+        if (user.getCorreo() == null || user.getPassword() == null ||
+                user.getCorreo() == null || user.getApellido() == null) {
             throw new IllegalArgumentException("Todos los campos son obligatorios");
         }
 
         // Verificar si el usuario ya existe
-        if (userRepository.findByUsername(user.getNombre()) != null) {
+        if (userRepository.findByCorreo(user.getCorreo()) != null) {
             throw new RuntimeException("El nombre de usuario ya existe");
         }
 
@@ -51,8 +52,9 @@ public class UserService {
     }
 
     // Métdo de carga de usuario implementado desde UserDetailsService
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
+    @Transactional(readOnly = true)
+    public UserDetails loadUserByUsername(String correo) throws UsernameNotFoundException {
+        User user = userRepository.findByCorreo(correo);
         if (user == null) {
             throw new UsernameNotFoundException("Usuario no encontrado");
         }

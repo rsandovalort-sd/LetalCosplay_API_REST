@@ -41,7 +41,7 @@ public class AuthController {
     }
 
     @GetMapping("/resource")
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('admin')")
     public ResponseEntity<String> getProtectedResource() {
         return ResponseEntity.ok("Este es un recurso protegido!");
     }
