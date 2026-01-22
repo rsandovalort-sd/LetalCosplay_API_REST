@@ -11,7 +11,7 @@ public interface IFacturaService {
 
     Factura buscarPorId(Long id);
 
-    Factura guardar(Long clienteId, Long vendedorId, Factura factura);
+    Factura guardar(Long userId, Factura factura);
 
     void eliminar(Long id);
 }

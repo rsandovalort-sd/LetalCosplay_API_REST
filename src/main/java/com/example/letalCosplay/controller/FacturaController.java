@@ -29,13 +29,12 @@ public class FacturaController {
         return facturaService.buscarPorId(id);
     }
 
-    @PostMapping("/crear/{clienteId}/{vendedorId}")
+    @PostMapping("/crear/{userId}")
     public Factura guardar(
-            @PathVariable Long clienteId,
-            @PathVariable Long vendedorId,
+            @PathVariable Long userId,
             @RequestBody Factura factura) {
 
-        return facturaService.guardar(clienteId, vendedorId, factura);
+        return facturaService.guardar(userId, factura);
     }
 
     @DeleteMapping("/{id}")

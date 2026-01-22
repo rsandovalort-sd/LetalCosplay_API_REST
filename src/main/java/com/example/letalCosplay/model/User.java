@@ -1,8 +1,10 @@
 package com.example.letalCosplay.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.math.BigInteger;
+import java.util.List;
 
 @Entity
 public class User {
@@ -31,6 +33,16 @@ public class User {
 
     @Column(nullable = false)
     private String rol;
+
+    // ONE TO MANY
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<Factura> facturas;
+
+    // ONE TO ONE
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private CalificacionTienda calificacionTienda;
 
     public User() {
     }
@@ -107,5 +119,21 @@ public class User {
 
     public void setRol(String rol) {
         this.rol = rol;
+    }
+
+    public List<Factura> getFacturas() {
+       return facturas;
+    }
+
+    public void setFacturas(List<Factura> facturas) {
+        this.facturas = facturas;
+    }
+
+    public CalificacionTienda getCalificacionTienda() {
+        return calificacionTienda;
+    }
+
+    public void setCalificacionTienda(CalificacionTienda calificacionTienda) {
+        this.calificacionTienda = calificacionTienda;
     }
 }

@@ -1,10 +1,9 @@
 package com.example.letalCosplay.service;
 
 import com.example.letalCosplay.model.*;
-import com.example.letalCosplay.repository.ClienteRepository;
+import com.example.letalCosplay.repository.IUserRepository;
 import com.example.letalCosplay.repository.FacturaRepository;
 import com.example.letalCosplay.repository.ProductoRepository;
-import com.example.letalCosplay.repository.VendedorRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -17,19 +16,16 @@ import java.util.List;
 public class FacturaServiceImpl implements IFacturaService {
 
     private final FacturaRepository facturaRepository;
-    private final ClienteRepository clienteRepository;
-    private final VendedorRepository vendedorRepository;
+    private final IUserRepository userRepository;
     private final ProductoRepository productoRepository;
 
     public FacturaServiceImpl(
             FacturaRepository facturaRepository,
-            ClienteRepository clienteRepository,
-            VendedorRepository vendedorRepository,
+            IUserRepository userRepository,
             ProductoRepository productoRepository
     ) {
         this.facturaRepository = facturaRepository;
-        this.clienteRepository = clienteRepository;
-        this.vendedorRepository = vendedorRepository;
+        this.userRepository = userRepository;
         this.productoRepository = productoRepository;
     }
 
@@ -45,16 +41,12 @@ public class FacturaServiceImpl implements IFacturaService {
     }
 
     @Override
-    public Factura guardar(Long clienteId, Long vendedorId, Factura factura) {
+    public Factura guardar(Long userId, Factura factura) {
 
-        Cliente cliente = clienteRepository.findById(clienteId)
-                .orElseThrow(() -> new RuntimeException("Cliente no existe"));
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("Usuario no existe"));
 
-        Vendedor vendedor = vendedorRepository.findById(vendedorId)
-                .orElseThrow(() -> new RuntimeException("Vendedor no existe"));
-
-        factura.setCliente(cliente);
-        factura.setVendedor(vendedor);
+        factura.setUser(user);
         factura.setFecha(LocalDate.now());
 
         if (factura.getDetalles() == null) {

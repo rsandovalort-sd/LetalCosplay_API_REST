@@ -22,14 +22,9 @@ public class Factura {
     private BigDecimal total;
 
     @ManyToOne
-    @JoinColumn(name = "cliente_id")
+    @JoinColumn(name = "user")
     @JsonBackReference
-    private Cliente cliente;
-
-    @ManyToOne
-    @JoinColumn(name = "vendedor_id")
-    @JsonBackReference
-    private Vendedor vendedor;
+    private User user;
 
     @OneToMany(mappedBy = "factura", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DetalleFactura> detalles;
@@ -61,20 +56,12 @@ public class Factura {
         this.valorEnvio = valorEnvio;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public User getUser() {
+        return user;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    public Vendedor getVendedor() {
-        return vendedor;
-    }
-
-    public void setVendedor(Vendedor vendedor) {
-        this.vendedor = vendedor;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public List<DetalleFactura> getDetalles() {
