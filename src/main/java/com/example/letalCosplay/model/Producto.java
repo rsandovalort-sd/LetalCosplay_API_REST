@@ -17,8 +17,10 @@ public class Producto {
     private Long idProducto;
 
     private String nombre;
+    private String descripcion;
     private BigDecimal precio_compra;
     private Integer stock;
+    private String imagen;
 
     @ManyToOne
     @JoinColumn(name = "id_proveedor")
@@ -59,6 +61,22 @@ public class Producto {
 
     public void setStock(Integer stock) {
         this.stock = stock;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     public Proveedor getProveedor() {
